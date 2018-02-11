@@ -1,11 +1,10 @@
 [all]
-# Todo: pytest when tests are needed
-linters = flake8, pylint, yapf, isort, pyroma, vulture, pypi
+# Todo: pytest when tests are needed, pyroma and pypi when setup.py is made
+linters = flake8, pylint, yapf, isort, vulture
 
 [flake8]
 max-line-length=100
 exclude=build,tests
-ignore=I100,I101,I201,B101,I900
 
 [isort]
 line_length=100
