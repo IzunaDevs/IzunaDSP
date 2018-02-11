@@ -9,9 +9,10 @@ python:
 
 install:
   - "git clone https://github.com/MTG/essentia"
-  - "essentia/waf configure --build-static --with-python --with-vamp"
-  - "essentia/waf"
-  - "essentia/waf install"
+  - "cd essentia"
+  - "./waf configure --build-static --with-python --with-vamp"
+  - "./waf"
+  - "./waf install"
   - "pip install -r requirements-ci.txt"
 
 script:
