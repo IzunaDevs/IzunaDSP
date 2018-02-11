@@ -1,0 +1,27 @@
+language: python
+
+python:
+  - "3.0"
+  - "3.1"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+install:
+  - "git clone https://github.com/MTG/essentia"
+  - "essentia/waf configure --build-static --with-python --with-vamp"
+  - "essentia/waf"
+  - "essentia/waf install"
+  - "pip install -r requirements-ci.txt"
+
+script:
+  # ignore output from install
+  - python setup.py install >> /dev/null
+  - snekchek
+
+cache: pip
+
+notifications:
+  email: false
