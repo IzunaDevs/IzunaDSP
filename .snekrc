@@ -9,7 +9,6 @@ exclude=build,tests
 [isort]
 line_length=100
 indent='    '
-multi_line_output=0
 length_sort=1
 use_parentheses=true
 sections=FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER
