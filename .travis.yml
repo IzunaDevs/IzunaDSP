@@ -13,6 +13,7 @@ install:
   - "./waf"
   - "./waf install"
   - "cd .."
+  - "rm -rf essentia"
   - "pip install -r requirements-ci.txt"
 
 script:
