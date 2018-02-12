@@ -12,6 +12,7 @@ install:
   - "./waf configure --build-static --with-python"
   - "./waf"
   - "./waf install"
+  - "cd .."
   - "pip install -r requirements-ci.txt"
 
 script:
