@@ -13,7 +13,8 @@ install:
   - "./waf configure --build-static --with-python"
   - "./waf"
   - "./waf install"
-  - "cd ../izunaDSP"
+  - "cd .."
+  - "ls"
   - "pip install -r requirements-ci.txt"
 
 script:
