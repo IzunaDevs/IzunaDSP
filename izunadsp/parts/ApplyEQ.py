@@ -4,8 +4,6 @@ import numpy as np
 
 from izunadsp.abc.DSPPart import DSPPart
 
-from matplotlib.pyplot import plot, show
-
 
 class ApplyEQ(DSPPart):
     def __init__(self):

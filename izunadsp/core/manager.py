@@ -20,19 +20,15 @@ class Manager:
 
         frames = []
 
-        for frame in FrameGenerator(audio, frameSize=1024, hopSize=512):
+        for frame in FrameGenerator(audio, frameSize=1024, hopSize=1024):
             for part in self.parts:
-                frame = part.handle(w(frame))
+                frame = part.handle(frame)
 
             frames.append(frame)
 
-        audio = np.concatenate(frames)
+        new_audio = np.concatenate(frames)
 
-        from matplotlib.pyplot import plot, show
-
-        plot(audio)
-        show()
         # b = BytesIO()
-        MonoWriter(filename="dubstep_modified.wav")(audio)
+        MonoWriter(filename="dubstep_modified.wav")(new_audio)
         # b.seek(0)
         # return b
