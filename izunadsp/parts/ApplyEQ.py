@@ -29,7 +29,6 @@ class ApplyEQ(DSPPart):
     def handle(self, frame: np.array) -> np.array:
         fft = FFT()
         ifft = IFFT()
-        plot(frame.copy())
 
         fftified = fft(frame)
 
