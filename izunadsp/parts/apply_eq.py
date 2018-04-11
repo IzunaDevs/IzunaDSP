@@ -45,10 +45,7 @@ class ApplyEQ(DSPPart):
 
         for old, new in zip([left, right], [new_left, new_right]):
             for frame in self.to_frames(old):
-                print(frame.size)
                 fftified = self.fft(frame.copy())
-
-                print(fftified.size)
 
                 eq_applied = self.bands_to_eq_size(fftified)
 
