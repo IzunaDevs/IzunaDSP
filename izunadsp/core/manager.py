@@ -1,3 +1,6 @@
+from io import BytesIO
+from tempfile import NamedTemporaryFile
+
 # External Libraries
 from essentia.standard import AudioLoader, AudioWriter
 
@@ -12,14 +15,22 @@ class Manager:
     def register_part(self, part: DSPPart):
         self.parts.append(part)
 
-    def passthrough(self, filename: str,
-                    outname: str):  # TODO: Return a BytesIO
-        audio, *_ = AudioLoader(filename=filename)()
+    def passthrough(self, input_file: BytesIO, output_file: str = None) -> BytesIO:
+        if isinstance(input_file, BytesIO):
+            with NamedTemporaryFile() as file:
+                file.write(input_file.read())
+                file.seek(0)
+                audio, *_ = AudioLoader(filename=file.name)()
+        else:
+            audio, *_ = AudioLoader(filename=input_file)()
 
         for part in self.parts:
             audio = part.handle(audio)
 
-        # b = BytesIO()
-        AudioWriter(filename=outname)(audio)
-        # b.seek(0)
-        # return b
+        if output_file is not None:
+            AudioWriter(filename=output_file)(audio)
+        else:
+            with NamedTemporaryFile() as file:
+                AudioWriter(filename=file.name)(audio)
+                file.seek(0)
+                return BytesIO(file.read())
