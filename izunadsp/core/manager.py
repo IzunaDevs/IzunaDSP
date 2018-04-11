@@ -12,7 +12,8 @@ class Manager:
     def register_part(self, part: DSPPart):
         self.parts.append(part)
 
-    def passthrough(self, filename: str, outname: str):  # TODO: Return a BytesIO
+    def passthrough(self, filename: str,
+                    outname: str):  # TODO: Return a BytesIO
         audio, *_ = AudioLoader(filename=filename)()
 
         for part in self.parts:
