@@ -29,7 +29,7 @@ class ApplyEQ(DSPPart):
         self._eq = v
 
     def set_eq(self, eq: list):
-        if len(eq) > 512 or len(eq) == 0:
+        if not len or len(eq) > 512:
             raise ValueError("Expected a list of size 0 < n <= 512")
         self.eq = eq
 

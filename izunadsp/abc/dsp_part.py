@@ -1,5 +1,5 @@
 # External Libraries
-from essentia.standard import FrameGenerator, StereoMuxer, StereoDemuxer
+from essentia.standard import StereoMuxer, StereoDemuxer, FrameGenerator
 import numpy as np
 
 

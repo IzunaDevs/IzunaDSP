@@ -1,6 +1,6 @@
-from izunadsp.parts.apply_eq import ApplyEQ
+# IzunaDSP
 from izunadsp.core.manager import Manager
-
+from izunadsp.parts.apply_eq import ApplyEQ
 
 man = Manager()
 eq = ApplyEQ()
