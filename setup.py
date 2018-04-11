@@ -1,5 +1,7 @@
 # External Libraries
 from setuptools import setup, find_packages
+
+# IzunaDSP
 from izunadsp import misc
 
 with open("README.rst") as file:
@@ -7,7 +9,6 @@ with open("README.rst") as file:
 
 with open("requirements.txt") as file:
     REQUIREMENTS = file.readlines()
-
 
 if __name__ == '__main__':
     setup(
@@ -24,12 +25,10 @@ if __name__ == '__main__':
         url="https://github.com/IzunaDevs/IzunaDSP",
         packages=find_packages(),
         install_requires=REQUIREMENTS,
-        keywords=[
-            "audio", "audio processing", "DSP"
-        ],
+        keywords=["audio", "audio processing", "DSP"],
         classifiers=[
-            "Development Status :: 2 - Pre-Alpha",
-            "Environment :: Console", "Intended Audience :: Developers",
+            "Development Status :: 2 - Pre-Alpha", "Environment :: Console",
+            "Intended Audience :: Developers",
             "License :: OSI Approved :: MIT License",
             "Operating System :: OS Independent",
             "Programming Language :: Python :: 3",

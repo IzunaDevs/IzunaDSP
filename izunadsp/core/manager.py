@@ -1,9 +1,11 @@
+# Stdlib
 from io import BytesIO
 
-from essentia.standard import MonoLoader, FrameGenerator, Windowing, MonoWriter
-import numpy as np
+# External Libraries
+from essentia.standard import AudioLoader, AudioWriter
 
-from izunadsp.abc.DSPPart import DSPPart
+# IzunaDSP
+from izunadsp.abc.dsp_part import DSPPart
 
 
 class Manager:
@@ -14,21 +16,12 @@ class Manager:
         self.parts.append(part)
 
     def passthrough(self, filename: str) -> BytesIO:
-        audio = MonoLoader(filename=filename)()
+        audio, *_ = AudioLoader(filename=filename)()
 
-        w = Windowing(type="hann")
-
-        frames = []
-
-        for frame in FrameGenerator(audio, frameSize=1024, hopSize=1024):
-            for part in self.parts:
-                frame = part.handle(frame)
-
-            frames.append(frame)
-
-        new_audio = np.concatenate(frames)
+        for part in self.parts:
+            audio = part.handle(audio)
 
         # b = BytesIO()
-        MonoWriter(filename="dubstep_modified.wav")(new_audio)
+        AudioWriter(filename=f"modified_{filename}")(audio)
         # b.seek(0)
         # return b
