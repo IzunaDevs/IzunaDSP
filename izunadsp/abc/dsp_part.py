@@ -23,4 +23,7 @@ class DSPPart:
 
     @staticmethod
     def to_stereo(audio: np.array) -> tuple:
-        return StereoDemuxer()(audio)
+        left, right = StereoDemuxer()(audio)
+        if not [r for r in right if r != 0]:
+            right = left.copy()
+        return left, right

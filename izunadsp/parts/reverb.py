@@ -20,7 +20,7 @@ class Reverb(DSPPart):
             beginning = [0] * offset * (i + 1)
             end = audio_bytes[:-offset * (i + 1)]
             multiplied_end = end * ((1 - self.decay) ** (i + 1))
-            delayed_bytes = delayed_bytes + np.append(beginning, multiplied_end)
+            delayed_bytes += np.append(beginning, multiplied_end)
         return delayed_bytes
 
     def handle(self, audio: np.array) -> np.array:
