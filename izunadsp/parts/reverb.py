@@ -1,27 +1,32 @@
+from essentia import array
 import numpy as np
 
 from izunadsp.abc.dsp_part import DSPPart
 
 
 class Reverb(DSPPart):
+    """ TODO: Speed this up """
     def __init__(self):
         super().__init__()
-        self.decay = 0.75
+        self.delay = 250  # in ms
+        self.n = 4
+        self.decay = 0.5
+
+    def apply_delay(self, audio: np.array):
+        offset = int(8 * self.delay * 44100 / 10_000)
+        audio_bytes = np.append(audio, [0] * offset * self.n)
+        delayed_bytes = audio_bytes
+        for i in range(self.n):
+            beginning = [0] * offset * (i + 1)
+            end = audio_bytes[:-offset * (i + 1)]
+            multiplied_end = end * ((1 - self.decay) ** (i + 1))
+            delayed_bytes = delayed_bytes + np.append(beginning, multiplied_end)
+        return delayed_bytes
 
     def handle(self, audio: np.array) -> np.array:
         left, right = self.to_stereo(audio)
 
-        cache = None
+        left = array(self.apply_delay(left))
+        right = array(self.apply_delay(right))
 
-        new_left = []
-        new_right = []
-
-        for (old, new) in zip([left, right], [new_left, new_right]):
-            for frame in self.to_frames(old):
-                frame = frame if cache is None else frame + (cache * self.decay)
-
-                new.append(frame)
-
-                cache = frame
-            cache = None
-        return self.to_mono(self.to_audio(new_left), self.to_audio(new_right))
+        return self.to_mono(left, right)
