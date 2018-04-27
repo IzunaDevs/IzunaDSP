@@ -9,7 +9,7 @@ python:
 addons:
   apt:
     packages:
-      - libav
+      - libav-tools
 
 install:
   - "cd .."
@@ -23,12 +23,11 @@ install:
 
 script:
   # ignore output from install
-  # - python setup.py install >> /dev/null
+  - python setup.py install >> /dev/null
   - snekchek
 
 cache:
   - pip
-  - "../essentia"
 
 notifications:
   email: false
