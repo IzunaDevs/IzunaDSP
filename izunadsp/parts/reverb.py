@@ -13,7 +13,7 @@ class Reverb(DSPPart):
         self.decay = 0.5
 
     def apply_delay(self, audio: np.array):
-        offset = int(8 * self.delay * 44100 / 10_000)
+        offset = int(8 * self.delay * 44100 / 10000)
         audio_bytes = np.append(audio, [0] * offset * self.n)
         delayed_bytes = audio_bytes
         for i in range(self.n):
