@@ -29,6 +29,7 @@ class Manager:
 
         if output_file is not None:
             AudioWriter(filename=output_file)(audio)
+            return
         else:
             with NamedTemporaryFile() as file:
                 AudioWriter(filename=file.name)(audio)

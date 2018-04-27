@@ -6,6 +6,10 @@ python:
   - "3.5"
   - "3.6"
 
+before_install:
+  - "apt update"
+  - "apt install libav"
+
 install:
   - "cd .."
   - "git clone https://github.com/MTG/essentia"

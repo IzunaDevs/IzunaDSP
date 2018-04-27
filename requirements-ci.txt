@@ -2,8 +2,6 @@ snekchek
 
 flake8
 flake8-tidy-imports
-flake8-todo
-flake8-requirements
 flake8-string-format
 
 pylint
