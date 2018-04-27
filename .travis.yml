@@ -8,11 +8,9 @@ python:
   - "3.5"
   - "3.6"
 
-addons:
-  apt:
-    packages:
-      - libfftw3-dev
-      - libav-tools
+before_install:
+  - sudo apt update
+  - sudo apt install libfftw3-dev libav-tools
 
 install:
   - "cd .."
