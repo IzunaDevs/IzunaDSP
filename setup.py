@@ -1,5 +1,5 @@
 # External Libraries
-from setuptools import setup, find_packages
+from setuptools import setup
 
 # IzunaDSP
 from izunadsp import misc
