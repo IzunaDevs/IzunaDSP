@@ -23,7 +23,7 @@ if __name__ == '__main__':
         description=misc.description,
         long_description=README,
         url="https://github.com/IzunaDevs/IzunaDSP",
-        packages=find_packages(),
+        packages=['izunadsp'],
         install_requires=REQUIREMENTS,
         keywords=["audio", "audio processing", "DSP"],
         classifiers=[
