@@ -9,8 +9,8 @@ python:
 addons:
   apt:
     packages:
-      - libfftw-dev
-      - libav-tools-dev
+      - libfftw3-dev
+      - libav-tools
 
 install:
   - "cd .."
