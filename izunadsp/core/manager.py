@@ -1,3 +1,4 @@
+# Stdlib
 from io import BytesIO
 from tempfile import NamedTemporaryFile
 
@@ -15,7 +16,8 @@ class Manager:
     def register_part(self, part: DSPPart):
         self.parts.append(part)
 
-    def passthrough(self, input_file: BytesIO, output_file: str = None) -> BytesIO:
+    def passthrough(self, input_file: BytesIO,
+                    output_file: str = None) -> BytesIO:
         if isinstance(input_file, BytesIO):
             with NamedTemporaryFile() as file:
                 file.write(input_file.read())
