@@ -1,11 +1,6 @@
 TODO:
 
 - Installation guide/script (cross-platform)
-- Make it works dynamically with datastreams and static files
-- Read/Write data
-- Get spectrum data
-- Edit spectrum data
-- Change loudness per-segment
 - Documentation
-- Apply equalizer settings
+- Smoothen equalizer settings (curve approximation)
 - More to be added

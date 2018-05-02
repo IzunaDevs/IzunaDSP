@@ -10,7 +10,7 @@ python:
 
 before_install:
   - sudo apt update
-  - sudo apt install libfftw3-dev libav-tools
+  - sudo apt install libfftw3-dev libav-tools ffmpeg
 
 install:
   - "cd .."
