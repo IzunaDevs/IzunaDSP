@@ -8,13 +8,7 @@ from izunadsp.abc.dsp_part import DSPPart
 class Tremolo(DSPPart):
     def __init__(self):
         super().__init__()
-        self.rate = 1.0
-        self.depth = 2.0
-
-    def set_depth(self, depth: float):
-        if (depth > 1) or (depth <= 0):
-            raise Exception("Depth has to be 0 < depth =< 1")
-        self.depth = depth / 2
+        self.rate = 4
 
     def set_rate(self, rate: float):
         self.rate = rate
@@ -32,9 +26,8 @@ class Tremolo(DSPPart):
             _phi = 0
 
             for frame in old:
-                offset = 1.0 - self.depth
-                mod = offset + self.depth * math.sin(_phi)
-                _phi += math.tau / 44100 * self.rate
+                mod = (math.sin(_phi) + 1.5) / 2.5
+                _phi += 1/self.rate * math.pi
                 frame_mod = frame * mod
                 new.append(frame_mod)
 
