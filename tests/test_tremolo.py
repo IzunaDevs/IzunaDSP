@@ -7,4 +7,4 @@ tr = Tremolo()
 
 man.register_part(tr)
 
-man.passthrough("AGLOOP.ogg", "dubstep_tremolo.wav")
+man.passthrough("Unt.ogg", "dubstep_tremolo.wav")
