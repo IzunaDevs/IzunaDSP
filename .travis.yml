@@ -11,13 +11,6 @@ before_install:
   - sudo apt install libfftw3-dev libav-tools ffmpeg
 
 install:
-  - "cd .."
-  - "git clone https://github.com/MTG/essentia"
-  - "cd essentia"
-  - "./waf configure --build-static --with-python"
-  - "./waf"
-  - "./waf install"
-  - "cd ../IzunaDSP"
   - "pip install -r requirements-ci.txt"
 
 script:
@@ -30,3 +23,4 @@ cache:
 
 notifications:
   email: false
+
