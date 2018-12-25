@@ -3,8 +3,7 @@ from izunadsp.core.manager import Manager
 from izunadsp.parts.volume import Volume
 
 man = Manager()
-vol = Volume()
-vol.set_volume(0.5)
+vol = Volume(0.5)
 
 man.register_part(vol)
 

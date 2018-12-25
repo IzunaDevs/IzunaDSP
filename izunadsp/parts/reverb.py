@@ -3,7 +3,8 @@ from essentia import array
 import numpy as np
 
 # IzunaDSP
-from izunadsp.abc.dsp_part import DSPPart
+from izunadsp.core.audio_object import AudioSequence
+from izunadsp.core.dsp_part import DSPPart
 
 
 class Reverb(DSPPart):
@@ -26,10 +27,10 @@ class Reverb(DSPPart):
             delayed_bytes += np.append(beginning, multiplied_end)
         return delayed_bytes
 
-    def handle(self, audio: np.array) -> np.array:
-        left, right = self.to_stereo(audio)
+    def handle(self, audio: AudioSequence) -> AudioSequence:
+        left, right = audio / 2
 
-        left = array(self.apply_delay(left))
-        right = array(self.apply_delay(right))
+        left = left.new(array(self.apply_delay(left.audio)))
+        right = right.new(array(self.apply_delay(right.audio)))
 
-        return self.to_mono(left, right)
+        return left * right
