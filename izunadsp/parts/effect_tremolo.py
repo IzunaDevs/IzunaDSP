@@ -23,6 +23,6 @@ class Tremolo(DSPPart):
                 mod = (math.sin(_phi) + 1.5) / 2.5
                 _phi += 1 / self.rate * math.pi
                 frame_mod = frame.audio * mod
-                new.append(old.new(frame_mod))
+                new.append(frame.new(frame_mod))
 
         return sum(new_left) * sum(new_right)

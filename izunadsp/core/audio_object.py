@@ -1,7 +1,8 @@
 # Stdlib
-from typing import Tuple, Iterable
+from typing import Tuple, Callable, Iterable
 
 # External Libraries
+import essentia
 from essentia.standard import Resample, AudioWriter, StereoMuxer, StereoDemuxer, FrameGenerator
 import numpy as np
 
@@ -12,7 +13,7 @@ class AudioSequence:
                  hop_size: int = 1024,
                  frame_size: int = 1024,
                  freq: int = 44100):
-        self.audio: np.ndarray = audio
+        self.audio: np.ndarray = essentia.array(audio)
         self.fs: int = frame_size
         self.hs: int = hop_size
         self.freq: int = freq
@@ -24,9 +25,16 @@ class AudioSequence:
         left, right = self / 2
         resample_rate = self.freq / item
         res_func = Resample(outputSampleRate=resample_rate, quality=0)
-        left = list(map(res_func, left))
-        right = list(map(res_func, right))
+        left = list(map(lambda frame: left.new(res_func(frame.audio)), left))
+        right = list(
+            map(lambda frame: right.new(res_func(frame.audio)), right))
         return sum(left) * sum(right)
+
+    def apply(self, func: Callable, seq=False):
+        x = func(self.audio)
+        if seq:
+            x = self.new(x)
+        return x
 
     def __pow__(self, power, _=None):
         return self.new(self.audio * power)

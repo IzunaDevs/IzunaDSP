@@ -12,6 +12,9 @@ class Convolver(DSPPart):
         self.IRS = sample or hann(
             50)  # HANN as default sample; find better alternative?
 
+    def transform(self, frame: np.ndarray) -> np.ndarray:
+        return convolve(frame, self.IRS, mode='same') / max(self.IRS)
+
     def handle(self, audio: AudioSequence) -> AudioSequence:
         left, right = audio / 2
 
@@ -20,10 +23,7 @@ class Convolver(DSPPart):
 
         for (old, new) in zip([left, right], [new_left, new_right]):
             for frame in old:
-                new.append(
-                    old.new(
-                        convolve(frame.audio, self.IRS, mode='same') / max(
-                            self.IRS)))
+                new.append(frame.apply(self.transform, seq=True))
 
         audio = sum(new_left) * sum(new_right)
 

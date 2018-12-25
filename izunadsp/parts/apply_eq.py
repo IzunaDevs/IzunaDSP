@@ -38,6 +38,11 @@ class ApplyEQ(DSPPart):
         frame *= self.eq
         return frame / 1000
 
+    def transform(self, frame: np.ndarray) -> np.ndarray:
+        fftified = self.fft(frame.copy())
+        eq_applied = self.bands_to_eq_size(fftified)
+        return self.ifft(eq_applied)
+
     def handle(self, audio: AudioSequence) -> AudioSequence:
         left, right = audio / 2
 
@@ -46,9 +51,6 @@ class ApplyEQ(DSPPart):
 
         for old, new in zip([left, right], [new_left, new_right]):
             for frame in old:
-                fftified = self.fft(frame.audio.copy())
-                eq_applied = self.bands_to_eq_size(fftified)
-                rev_frame = self.ifft(eq_applied)
-                new.append(rev_frame)
+                new.append(frame.apply(self.transform, seq=True))
 
         return sum(new_left) * sum(new_right)
