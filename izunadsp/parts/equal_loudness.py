@@ -1,7 +1,5 @@
 # External Libraries
 from essentia.standard import EqualLoudness as EL
-
-# IzunaDSP
 from izunadsp.core.audio_object import AudioSequence
 from izunadsp.core.dsp_part import DSPPart
 

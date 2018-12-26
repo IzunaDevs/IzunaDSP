@@ -1,10 +1,8 @@
 # External Libraries
 from essentia import array
-import numpy as np
-
-# IzunaDSP
 from izunadsp.core.audio_object import AudioSequence
 from izunadsp.core.dsp_part import DSPPart
+import numpy as np
 
 
 class Reverb(DSPPart):
