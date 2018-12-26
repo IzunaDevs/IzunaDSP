@@ -1,5 +1,4 @@
 # IzunaDSP
-# External Libraries
 from izunadsp.core.audio_object import AudioSequence
 
 

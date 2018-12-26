@@ -1,8 +1,10 @@
 # External Libraries
-from izunadsp.core.audio_object import AudioSequence
-from izunadsp.core.dsp_part import DSPPart
 import numpy as np
 from scipy.signal import hann, convolve
+
+# IzunaDSP
+from izunadsp.core.audio_object import AudioSequence
+from izunadsp.core.dsp_part import DSPPart
 
 
 class Convolver(DSPPart):

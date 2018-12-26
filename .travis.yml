@@ -15,12 +15,12 @@ install:
   - pip install -r requirements-ci.txt
 
 script:
-  - python setup.py install
   - snekchek
+  - python setup.py install
+  - pytest
 
 cache:
   - pip
 
 notifications:
   email: false
-

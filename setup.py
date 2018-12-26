@@ -1,6 +1,8 @@
 # External Libraries
-from izunadsp import misc
 from setuptools import setup, find_packages
+
+# IzunaDSP
+from izunadsp import misc
 
 with open("README.rst") as file:
     README = file.read()
