@@ -12,7 +12,8 @@ before_install:
   - sudo apt install libfftw3-dev libav-tools ffmpeg
 
 install:
-  - pip install -r requirements-ci.txt
+  - pip install -U -r requirements-ci.txt
+  - pip install -r requirements.txt
 
 script:
   - snekchek
