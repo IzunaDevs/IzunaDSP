@@ -1,5 +1,5 @@
 # External Libraries
-from setuptools import setup
+from setuptools import setup, find_packages
 
 # IzunaDSP
 from izunadsp import misc
@@ -23,7 +23,7 @@ if __name__ == '__main__':
         description=misc.description,
         long_description=README,
         url="https://github.com/IzunaDevs/IzunaDSP",
-        packages=['izunadsp'],
+        packages=find_packages(),
         install_requires=REQUIREMENTS,
         keywords=["audio", "audio processing", "DSP"],
         classifiers=[
