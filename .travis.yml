@@ -12,13 +12,10 @@ before_install:
   - sudo apt install libfftw3-dev libav-tools ffmpeg
 
 install:
-  - python -V
   - pip install -r requirements-ci.txt
+  - python setup.py install
 
 script:
-  # ignore output from install
-  - python -V
-  - python setup.py install
   - snekchek
 
 cache:
