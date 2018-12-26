@@ -1,6 +1,6 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.effect_tremolo import Tremolo
+from izunadsp.core import Manager
+from izunadsp.parts import Tremolo
 
 man = Manager()
 tr = Tremolo()

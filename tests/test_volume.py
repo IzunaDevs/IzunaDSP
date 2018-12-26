@@ -1,6 +1,6 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.volume import Volume
+from izunadsp.core import Manager
+from izunadsp.parts import Volume
 
 man = Manager()
 vol = Volume(0.5)

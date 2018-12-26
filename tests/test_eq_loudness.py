@@ -1,6 +1,6 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.equal_loudness import EqualLoudness
+from izunadsp.core import Manager
+from izunadsp.parts import EqualLoudness
 
 man = Manager()
 eq_loud = EqualLoudness()

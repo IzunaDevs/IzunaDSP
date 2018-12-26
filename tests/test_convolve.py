@@ -1,6 +1,6 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.convolve import Convolver
+from izunadsp.core import Manager
+from izunadsp.parts import Convolver
 
 man = Manager()
 convolver = Convolver()
