@@ -18,7 +18,7 @@ install:
 script:
   - snekchek
   - python setup.py install
-  - pytest -c .snekrc
+  - pytest -c .snekrc tests
 
 cache:
   - pip
