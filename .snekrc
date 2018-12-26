@@ -1,6 +1,6 @@
 [all]
 # Todo: pytest when tests are needed, pyroma and pypi when setup.py is made
-linters = flake8, pylint, yapf, isort, vulture, pytest, pypi
+linters = flake8, pylint, isort, vulture, pytest, pypi
 
 [flake8]
 max-line-length=100
