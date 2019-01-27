@@ -1,10 +1,10 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.speed_mod import SpeedModifier
+# External Libraries
+from izunadsp.core import Manager
+from izunadsp.parts import SpeedModifier
 
 man = Manager()
-sp = SpeedModifier()
-sp.set_speed(2.0)
+sp = SpeedModifier(2.0)
 
 man.register_part(sp)
 

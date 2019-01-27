@@ -1,9 +1,9 @@
 # External Libraries
 import numpy as np
-from scipy.signal import convolve, hann
+from scipy.signal import hann, convolve
 
 # IzunaDSP
-from izunadsp.abc.dsp_part import DSPPart
+from izunadsp import DSPPart, AudioSequence
 
 
 class Convolver(DSPPart):
@@ -14,16 +14,19 @@ class Convolver(DSPPart):
     def set_sample(self, sample: np.array):
         self.IRS = sample
 
-    def handle(self, audio: np.array) -> np.array:
-        left, right = self.to_stereo(audio)
+    def transform(self, frame: np.ndarray) -> np.ndarray:
+        return convolve(frame, self.IRS, mode='same') / max(self.IRS)
+
+    def handle(self, audio: AudioSequence) -> AudioSequence:
+        left, right = audio / 2
 
         new_left = []
         new_right = []
 
         for (old, new) in zip([left, right], [new_left, new_right]):
-            for frame in self.to_frames(old):
-                new.append(convolve(old, self.IRS, mode='same') / max(self.IRS))
+            for frame in old:
+                new.append(frame.apply(self.transform, seq=True))
 
-        audio = self.to_mono(self.to_audio(left), self.to_audio(right))
+        audio = sum(new_left) * sum(new_right)
 
         return audio

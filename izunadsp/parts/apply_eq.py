@@ -3,7 +3,7 @@ import numpy as np
 from essentia.standard import FFT, IFFT
 
 # IzunaDSP
-from izunadsp.abc.dsp_part import DSPPart
+from izunadsp import DSPPart, AudioSequence
 
 
 class ApplyEQ(DSPPart):
@@ -37,22 +37,19 @@ class ApplyEQ(DSPPart):
         frame *= self.eq
         return frame / 1000
 
-    def handle(self, audio: np.array) -> np.array:
-        left, right = self.to_stereo(audio)
+    def transform(self, frame: np.ndarray) -> np.ndarray:
+        fftified = self.fft(frame.copy())
+        eq_applied = self.bands_to_eq_size(fftified)
+        return self.ifft(eq_applied)
+
+    def handle(self, audio: AudioSequence) -> AudioSequence:
+        left, right = audio / 2
 
         new_left = []
         new_right = []
 
         for old, new in zip([left, right], [new_left, new_right]):
-            for frame in self.to_frames(old):
-                fftified = self.fft(frame.copy())
+            for frame in old:
+                new.append(frame.apply(self.transform, seq=True))
 
-                eq_applied = self.bands_to_eq_size(fftified)
-
-                rev_frame = self.ifft(eq_applied)
-
-                new.append(rev_frame)
-
-        audio = self.to_mono(self.to_audio(new_left), self.to_audio(new_right))
-
-        return audio
+        return sum(new_left) * sum(new_right)

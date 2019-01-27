@@ -1,18 +1,11 @@
-# External Libraries
-import numpy as np
-
 # IzunaDSP
-from izunadsp.abc.dsp_part import DSPPart
+from izunadsp import DSPPart, AudioSequence
 
 
 class Volume(DSPPart):
-    def __init__(self):
-        super().__init__()
-        self.volume = 1.0
-
-    def set_volume(self, volume: float):
+    def __init__(self, volume: float = 1.0):
         self.volume = volume
 
-    def handle(self, audio: np.array) -> np.array:
-        left, right = self.to_stereo(audio)
-        return self.to_mono(left * self.volume, right * self.volume)
+    def handle(self, audio: AudioSequence) -> AudioSequence:
+        left, right = audio / 2
+        return left**self.volume * right**self.volume

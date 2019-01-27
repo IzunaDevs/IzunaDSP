@@ -1,10 +1,10 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.volume import Volume
+# External Libraries
+from izunadsp.core import Manager
+from izunadsp.parts import Volume
 
 man = Manager()
-vol = Volume()
-vol.set_volume(0.5)
+vol = Volume(0.5)
 
 man.register_part(vol)
 

@@ -1,13 +1,14 @@
 # Stdlib
 from io import BytesIO
 from tempfile import NamedTemporaryFile
-# External Libraries
+
 from typing import Union
 
-from essentia.standard import AudioLoader, AudioWriter
+# External Libraries
+from essentia.standard import AudioLoader
 
 # IzunaDSP
-from izunadsp.abc.dsp_part import DSPPart
+from izunadsp import DSPPart, AudioSequence
 
 
 class Manager:
@@ -17,8 +18,9 @@ class Manager:
     def register_part(self, part: DSPPart):
         self.parts.append(part)
 
-    def passthrough(self, input_file: Union[str, BytesIO],
-                    output_file: str = None) -> Union[BytesIO, None]:
+    def passthrough(self,
+                    input_file: Union[BytesIO, str],
+                    output_file: str = None) -> Union[BytesIO, str]:
         if isinstance(input_file, BytesIO):
             with NamedTemporaryFile() as file:
                 file.write(input_file.read())
@@ -27,14 +29,16 @@ class Manager:
         else:
             audio, *_ = AudioLoader(filename=input_file)()
 
+        audio_obj = AudioSequence(audio)
+
         for part in self.parts:
-            audio = part.handle(audio)
+            audio_obj = part.handle(audio_obj)
 
         if output_file is not None:
-            AudioWriter(filename=output_file)(audio)
-            return
-        else:
-            with NamedTemporaryFile() as file:
-                AudioWriter(filename=file.name)(audio)
-                file.seek(0)
-                return BytesIO(file.read())
+            audio_obj.save(output_file)
+            return output_file
+
+        with NamedTemporaryFile() as file:
+            audio_obj.save(file.name)
+            file.seek(0)
+            return BytesIO(file.read())

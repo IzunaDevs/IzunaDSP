@@ -1,6 +1,6 @@
 TODO:
 
-- Installation guide/script (cross-platform)
+- Make TravisCI install and run tests properly
 - Documentation
 - Smoothen equalizer settings (curve approximation)
 - More to be added

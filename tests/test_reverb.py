@@ -1,6 +1,7 @@
 # IzunaDSP
-from izunadsp.core.manager import Manager
-from izunadsp.parts.reverb import Reverb
+# External Libraries
+from izunadsp.core import Manager
+from izunadsp.parts import Reverb
 
 man = Manager()
 rev = Reverb()
