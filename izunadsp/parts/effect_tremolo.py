@@ -27,7 +27,7 @@ class Tremolo(DSPPart):
 
             for frame in old:
                 mod = (math.sin(_phi) + 1.5) / 2.5
-                _phi += 1/self.rate * math.pi
+                _phi += 1 / self.rate * math.pi
                 frame_mod = frame * mod
                 new.append(frame_mod)
 

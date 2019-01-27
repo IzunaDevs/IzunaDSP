@@ -1,6 +1,6 @@
 # External Libraries
-from essentia.standard import StereoMuxer, StereoDemuxer, FrameGenerator
 import numpy as np
+from essentia.standard import StereoMuxer, StereoDemuxer, FrameGenerator
 
 
 class DSPPart:

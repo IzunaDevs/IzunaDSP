@@ -1,6 +1,6 @@
 # External Libraries
-from essentia import array
 import numpy as np
+from essentia import array
 
 # IzunaDSP
 from izunadsp.abc.dsp_part import DSPPart
@@ -22,7 +22,7 @@ class Reverb(DSPPart):
         for i in range(self.n):
             beginning = [0] * offset * (i + 1)
             end = audio_bytes[:-offset * (i + 1)]
-            multiplied_end = end * ((1 - self.decay)**(i + 1))
+            multiplied_end = end * ((1 - self.decay) ** (i + 1))
             delayed_bytes += np.append(beginning, multiplied_end)
         return delayed_bytes
 

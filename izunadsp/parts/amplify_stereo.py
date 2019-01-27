@@ -1,8 +1,7 @@
 import essentia
+import numpy as np
 
 from izunadsp.abc.dsp_part import DSPPart
-
-import numpy as np
 
 
 class StereoAmplifier(DSPPart):
@@ -15,7 +14,7 @@ class StereoAmplifier(DSPPart):
     def handle(self, audio: np.array):
         left, right = self.to_stereo(audio)
         diff = (left == right)
-        mul_array = (np.array([self.mul]*len(audio)) * (diff - 1)) + 1
+        mul_array = (np.array([self.mul] * len(audio)) * (diff - 1)) + 1
         left = left * mul_array
         right = right * mul_array
 

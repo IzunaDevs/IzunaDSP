@@ -1,8 +1,9 @@
 # Stdlib
 from io import BytesIO
 from tempfile import NamedTemporaryFile
-
 # External Libraries
+from typing import Union
+
 from essentia.standard import AudioLoader, AudioWriter
 
 # IzunaDSP
@@ -16,8 +17,8 @@ class Manager:
     def register_part(self, part: DSPPart):
         self.parts.append(part)
 
-    def passthrough(self, input_file: BytesIO,
-                    output_file: str = None) -> BytesIO:
+    def passthrough(self, input_file: Union[str, BytesIO],
+                    output_file: str = None) -> Union[BytesIO, None]:
         if isinstance(input_file, BytesIO):
             with NamedTemporaryFile() as file:
                 file.write(input_file.read())

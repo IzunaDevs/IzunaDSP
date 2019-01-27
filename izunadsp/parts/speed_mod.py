@@ -1,6 +1,6 @@
 # External Libraries
-from essentia.standard import Resample
 import numpy as np
+from essentia.standard import Resample
 
 # IzunaDSP
 from izunadsp.abc.dsp_part import DSPPart

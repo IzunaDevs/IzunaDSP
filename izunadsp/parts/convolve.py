@@ -10,7 +10,7 @@ class Convolver(DSPPart):
     def __init__(self):
         super().__init__()
         self.IRS = hann(50)  # HANN as default sample; find better alternative?
-    
+
     def set_sample(self, sample: np.array):
         self.IRS = sample
 

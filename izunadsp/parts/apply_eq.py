@@ -1,6 +1,6 @@
 # External Libraries
-from essentia.standard import FFT, IFFT
 import numpy as np
+from essentia.standard import FFT, IFFT
 
 # IzunaDSP
 from izunadsp.abc.dsp_part import DSPPart
