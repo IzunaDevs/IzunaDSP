@@ -1,4 +1,6 @@
-from izunadsp import DSPPart, AudioSequence
+# IzunaDSP
+from .dsp_part import DSPPart
+from .audio_object import AudioSequence
 
 
 class FunctionPart(DSPPart):

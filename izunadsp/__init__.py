@@ -5,4 +5,3 @@ from izunadsp.parts import (ApplyEQ, Convolver, Tremolo, HighPass, EqualLoudness
 
 __all__ = ("AudioSequence", "DSPPart", "Manager", "FunctionPart", "DSPServer", "ApplyEQ", "Convolver",
            "Tremolo", "HighPass", "EqualLoudness", "LowPass", "Reverb", "SpeedModifier", "Volume")
-

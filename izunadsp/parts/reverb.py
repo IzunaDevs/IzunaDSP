@@ -1,6 +1,6 @@
 # External Libraries
-import numpy as np
 from essentia import array
+import numpy as np
 
 # IzunaDSP
 from izunadsp import DSPPart, AudioSequence

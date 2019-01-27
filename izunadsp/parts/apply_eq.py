@@ -1,6 +1,6 @@
 # External Libraries
-import numpy as np
 from essentia.standard import FFT, IFFT
+import numpy as np
 
 # IzunaDSP
 from izunadsp import DSPPart, AudioSequence

@@ -10,4 +10,3 @@ from izunadsp.parts.volume import Volume
 
 __all__ = "ApplyEQ", "Convolver", "Tremolo", "EqualLoudness", \
           "HighPass", "LowPass", "Reverb", "SpeedModifier", "Volume"
-

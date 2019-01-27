@@ -1,5 +1,5 @@
 # IzunaDSP
-from izunadsp.core.audio_object import AudioSequence
+from .audio_object import AudioSequence
 
 
 class DSPPart:

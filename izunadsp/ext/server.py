@@ -1,5 +1,7 @@
-from typing import Dict, Any
+# Stdlib
+from typing import Any, Dict
 
+# IzunaDSP
 import izunadsp
 from izunadsp import Manager
 

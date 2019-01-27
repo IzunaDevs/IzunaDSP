@@ -1,14 +1,14 @@
 # Stdlib
 from io import BytesIO
 from tempfile import NamedTemporaryFile
-
 from typing import Union
 
 # External Libraries
 from essentia.standard import AudioLoader
 
 # IzunaDSP
-from izunadsp import DSPPart, AudioSequence
+from .dsp_part import DSPPart
+from .audio_object import AudioSequence
 
 
 class Manager:

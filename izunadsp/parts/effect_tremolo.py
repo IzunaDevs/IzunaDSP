@@ -1,7 +1,6 @@
 # Stdlib
 import math
 
-
 # IzunaDSP
 from izunadsp import DSPPart, AudioSequence
 

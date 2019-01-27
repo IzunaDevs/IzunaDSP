@@ -1,5 +1,5 @@
 # IzunaDSP
-from izunadsp import AudioSequence, DSPPart
+from izunadsp import DSPPart, AudioSequence
 
 
 class SpeedModifier(DSPPart):

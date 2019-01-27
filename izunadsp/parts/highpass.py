@@ -1,5 +1,7 @@
+# External Libraries
 from essentia.standard import HighPass as HighPassFilter
 
+# IzunaDSP
 from izunadsp.core import FunctionPart
 
 
