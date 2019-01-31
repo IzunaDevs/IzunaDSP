@@ -20,7 +20,8 @@ class Manager:
 
     def passthrough(self,
                     input_file: Union[BytesIO, str],
-                    output_file: str = None) -> Union[BytesIO, str]:
+                    output_file: str = None,
+                    suffix: str = "") -> Union[BytesIO, str]:
         if isinstance(input_file, BytesIO):
             with NamedTemporaryFile() as file:
                 file.write(input_file.read())
@@ -38,7 +39,7 @@ class Manager:
             audio_obj.save(output_file)
             return output_file
 
-        with NamedTemporaryFile() as file:
+        with NamedTemporaryFile(suffix=suffix) as file:
             audio_obj.save(file.name)
             file.seek(0)
             return BytesIO(file.read())
